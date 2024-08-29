@@ -26,17 +26,17 @@ const addUsers = async (req, res, next) => {
 
     const { service, name, address, phoneNumber, date, time } = req.body;
 
-    let users;
+    let user;
 
     try {
-        users = new User({service, name, address, phoneNumber, date, time});
+        user = new User({service, name, address, phoneNumber, date, time});
         await users.save();
     } catch (error) {
         console.log(err);
     }
 
     //not insert users
-    if (!users) {
+    if (!user) {
         return res.status(404).json({ message: "Unable to add users" });
     }
     return res.status(200).json({ users });
@@ -55,10 +55,10 @@ const getById = async (req, res, next) => {
     }
 
     //not available users
-    if (!users) {
+    if (!user) {
         return res.status(404).json({ message: "User not found" });
     }
-    return res.status(200).json({ users });
+    return res.status(200).json({ user });
 }
 
 exports.getAllUsers = getAllUsers;
