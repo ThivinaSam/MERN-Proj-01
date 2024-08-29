@@ -3,7 +3,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require("./Routers/UserRoutes");
+const router = require("./Routes/UserRoutes");
 
 const app = express();
 

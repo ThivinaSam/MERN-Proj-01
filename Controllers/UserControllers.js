@@ -35,12 +35,32 @@ const addUsers = async (req, res, next) => {
         console.log(err);
     }
 
-    //don't insert users
+    //not insert users
     if (!users) {
         return res.status(404).json({ message: "Unable to add users" });
     }
     return res.status(200).json({ users });
 };
 
+//Get by ID
+const getById = async (req, res, next) => {
+    const id = req.params.id;
+
+    let user;
+
+    try {
+        user = await User.findById(id);
+    } catch (err) {
+        console.log(err);
+    }
+
+    //not available users
+    if (!users) {
+        return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ users });
+}
+
 exports.getAllUsers = getAllUsers;
 exports.addUsers = addUsers;
+exports.getById = getById;
